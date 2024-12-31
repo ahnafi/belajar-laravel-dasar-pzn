@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,3 +52,7 @@ Route::get("/produk/{id}", function ($id) {
 Route::get("/produk-redirect/{id}", function ($id) {
     return redirect()->route('product.detail', ['id' => $id]);
 });
+
+Route::get("/controller/hello/{name}", [HelloController::class, "hello"]);
+
+Route::get("/controller/request", [HelloController::class, "request"]);
