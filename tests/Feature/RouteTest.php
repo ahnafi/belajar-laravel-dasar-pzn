@@ -38,4 +38,10 @@ class RouteTest extends TestCase
         $this->view("about", ["name" => "budi"])->assertSeeText("about page , ");
         $this->view("hello.world")->assertSeeText("hello world");
     }
+
+    function testNamed()
+    {
+        $this->get("/produk/4")->assertStatus(200)->assertSeeText("link : http://localhost/product/4");
+        $this->get("/produk-redirect/4")->assertRedirect("/product/4");
+    }
 }

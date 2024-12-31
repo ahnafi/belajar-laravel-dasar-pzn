@@ -17,20 +17,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/hello",function(){
+Route::get("/hello", function () {
     return "Hello World";
 });
 
-Route::get("/about",function(){
-    return view('about',["name"=>"budi"]);
+Route::get("/about", function () {
+    return view('about', ["name" => "budi"]);
 });
 
-Route::fallback(function(){
+Route::fallback(function () {
     return "error 404";
 });
 
-Route::redirect("/about-me","/about");
+Route::redirect("/about-me", "/about");
 
-Route::get("/hi",function(){
+Route::get("/hi", function () {
     return view('hello.world');
+});
+
+Route::get("/product/{id?}", function ($id = 1) {
+    return "product id : $id";
+})->where('id', '[0-9]+')->name('product.detail');
+
+Route::get("/product/{productId}/items/{itemId}", function ($productId, $itemId) {
+    return "product id: $productId, item id: $itemId";
+})->name('product.item');
+
+Route::get("/produk/{id}", function ($id) {
+    $link = route('product.detail', ['id' => $id]);
+    return "link : $link";
+});
+
+Route::get("/produk-redirect/{id}", function ($id) {
+    return redirect()->route('product.detail', ['id' => $id]);
 });
