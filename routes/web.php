@@ -66,3 +66,5 @@ Route::post("/input/type", [InputController::class, "HelloType"]);
 Route::post("/input/only", [InputController::class, "FilterOnly"]);
 Route::post("/input/except", [InputController::class, "FilterExcept"]);
 Route::post("/input/filter/merge", [InputController::class, "FilterMerge"]);
+
+Route::post("/file/upload", [\App\Http\Controllers\FileController::class, "upload"]);
