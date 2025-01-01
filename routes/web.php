@@ -55,15 +55,14 @@ Route::get("/produk-redirect/{id}", function ($id) {
 });
 
 Route::get("/controller/hello/{name}", [HelloController::class, "hello"]);
-
 Route::get("/controller/request", [HelloController::class, "request"]);
 
 Route::get("/input/hello", [InputController::class, "hello"]);
-
 Route::post("/input/hello", [InputController::class, "hello"]);
-
 Route::post("/input/firstName", [InputController::class, "HelloFirstName"]);
-
 Route::post("/input/all", [InputController::class, "HelloAll"]);
-
 Route::post("/input/product", [InputController::class, "HelloArray"]);
+Route::post("/input/type", [InputController::class, "HelloType"]);
+Route::post("/input/only", [InputController::class, "FilterOnly"]);
+Route::post("/input/except", [InputController::class, "FilterExcept"]);
+Route::post("/input/filter/merge", [InputController::class, "FilterMerge"]);

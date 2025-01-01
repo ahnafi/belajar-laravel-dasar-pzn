@@ -34,4 +34,52 @@ class InputControllerTest extends TestCase
             ]
         ])->assertSeeText("foo")->assertSeeText("bar");
     }
+
+    function testType()
+    {
+        $this->post("/input/type", [
+            "name" => "budi",
+            "married" => false,
+            "birth_date" => "2000-01-01"
+        ])->assertSeeText("budi")->assertSeeText("true")->assertSeeText("2000-01-01");
+    }
+
+    function testOnly()
+    {
+        $this->post("/input/only", ["name" => [
+            "first" => "budi",
+            "last" => "siregar",
+            "birth_date" => "2000-01-01",
+            "address" => []
+        ]])->assertDontSeeText("address")->assertDontSeeText("birth_date");
+
+    }
+
+    function testExcept()
+    {
+        $this->post("/input/except",
+            ["name" => [
+                "first" => "budi",
+                "last" => "siregar",
+                "birth_date" => "2000-01-01",
+                "address" => []
+            ],
+                "admin" => "hehehehehe"]
+        )->assertDontSeeText("admin");
+    }
+
+    function testMerge()
+    {
+
+        $this->post("/input/filter/merge", [
+            ["name" => [
+                "first" => "budi",
+                "last" => "siregar",
+                "birth_date" => "2000-01-01",
+                "address" => []
+            ],
+                "admin" => true]
+        ])->assertSeeText("admin")->assertSeeText("false");
+    }
+
 }
