@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CookieController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,12 +70,16 @@ Route::post("/input/only", [InputController::class, "FilterOnly"]);
 Route::post("/input/except", [InputController::class, "FilterExcept"]);
 Route::post("/input/filter/merge", [InputController::class, "FilterMerge"]);
 
-Route::post("/file/upload", [\App\Http\Controllers\FileController::class, "upload"]);
+Route::post("/file/upload", [FileController::class, "upload"]);
 
-Route::get("/response/hello", [\App\Http\Controllers\ResponseController::class, "response"]);
-Route::get("/response/header", [\App\Http\Controllers\ResponseController::class, "header"]);
+Route::get("/response/hello", [ResponseController::class, "response"]);
+Route::get("/response/header", [ResponseController::class, "header"]);
 
-Route::get("/response/type/view", [\App\Http\Controllers\ResponseController::class, "resView"]);
-Route::get("/response/type/json", [\App\Http\Controllers\ResponseController::class, "resJson"]);
-Route::get("/response/type/file", [\App\Http\Controllers\ResponseController::class, "resFile"]);
-Route::get("/response/type/download", [\App\Http\Controllers\ResponseController::class, "resDownload"]);
+Route::get("/response/type/view", [ResponseController::class, "resView"]);
+Route::get("/response/type/json", [ResponseController::class, "resJson"]);
+Route::get("/response/type/file", [ResponseController::class, "resFile"]);
+Route::get("/response/type/download", [ResponseController::class, "resDownload"]);
+
+Route::get("/cookie/set", [CookieController::class, "createCookie"]);
+Route::get("/cookie/get", [CookieController::class, "getCookie"]);
+Route::get("/cookie/clear", [CookieController::class, "clearCookie"]);
