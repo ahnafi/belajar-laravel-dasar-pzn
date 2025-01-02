@@ -68,3 +68,11 @@ Route::post("/input/except", [InputController::class, "FilterExcept"]);
 Route::post("/input/filter/merge", [InputController::class, "FilterMerge"]);
 
 Route::post("/file/upload", [\App\Http\Controllers\FileController::class, "upload"]);
+
+Route::get("/response/hello", [\App\Http\Controllers\ResponseController::class, "response"]);
+Route::get("/response/header", [\App\Http\Controllers\ResponseController::class, "header"]);
+
+Route::get("/response/type/view", [\App\Http\Controllers\ResponseController::class, "resView"]);
+Route::get("/response/type/json", [\App\Http\Controllers\ResponseController::class, "resJson"]);
+Route::get("/response/type/file", [\App\Http\Controllers\ResponseController::class, "resFile"]);
+Route::get("/response/type/download", [\App\Http\Controllers\ResponseController::class, "resDownload"]);
