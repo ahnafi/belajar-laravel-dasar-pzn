@@ -96,3 +96,6 @@ Route::get("/redirect/away", [RedirectController::class, "redirectAway"]);
 Route::get("/middleware/api", function () {
     return "OK";
 })->middleware([ContohMiddleware::class]);
+
+Route::get("/form", [\App\Http\Controllers\FormController::class, "Form"]);
+Route::post("/form", [\App\Http\Controllers\FormController::class, "hello"]);
