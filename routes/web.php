@@ -103,3 +103,7 @@ Route::get("/middleware/api", function () {
 
 Route::get("/form", [\App\Http\Controllers\FormController::class, "Form"]);
 Route::post("/form", [\App\Http\Controllers\FormController::class, "hello"]);
+
+Route::get("/url/current",function (){
+    return \Illuminate\Support\Facades\URL::full();
+});
