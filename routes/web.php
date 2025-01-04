@@ -62,25 +62,29 @@ Route::get("/produk-redirect/{id}", function ($id) {
 Route::get("/controller/hello/{name}", [HelloController::class, "hello"]);
 Route::get("/controller/request", [HelloController::class, "request"]);
 
-Route::get("/input/hello", [InputController::class, "hello"]);
-Route::post("/input/hello", [InputController::class, "hello"]);
-Route::post("/input/firstName", [InputController::class, "HelloFirstName"]);
-Route::post("/input/all", [InputController::class, "HelloAll"]);
-Route::post("/input/product", [InputController::class, "HelloArray"]);
-Route::post("/input/type", [InputController::class, "HelloType"]);
-Route::post("/input/only", [InputController::class, "FilterOnly"]);
-Route::post("/input/except", [InputController::class, "FilterExcept"]);
-Route::post("/input/filter/merge", [InputController::class, "FilterMerge"]);
+Route::controller(InputController::class)->group(function () {
+    Route::get("/input/hello", "hello");
+    Route::post("/input/hello", "hello");
+    Route::post("/input/firstName", "HelloFirstName");
+    Route::post("/input/all", "HelloAll");
+    Route::post("/input/product", "HelloArray");
+    Route::post("/input/type", "HelloType");
+    Route::post("/input/only", "FilterOnly");
+    Route::post("/input/except", "FilterExcept");
+    Route::post("/input/filter/merge", "FilterMerge");
+});
 
 Route::post("/file/upload", [FileController::class, "upload"]);
 
 Route::get("/response/hello", [ResponseController::class, "response"]);
 Route::get("/response/header", [ResponseController::class, "header"]);
 
-Route::get("/response/type/view", [ResponseController::class, "resView"]);
-Route::get("/response/type/json", [ResponseController::class, "resJson"]);
-Route::get("/response/type/file", [ResponseController::class, "resFile"]);
-Route::get("/response/type/download", [ResponseController::class, "resDownload"]);
+Route::prefix("/response/type")->group(function () {
+    Route::get("/view", [ResponseController::class, "resView"]);
+    Route::get("/json", [ResponseController::class, "resJson"]);
+    Route::get("/file", [ResponseController::class, "resFile"]);
+    Route::get("/download", [ResponseController::class, "resDownload"]);
+});
 
 Route::get("/cookie/set", [CookieController::class, "createCookie"]);
 Route::get("/cookie/get", [CookieController::class, "getCookie"]);
