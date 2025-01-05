@@ -110,3 +110,16 @@ Route::get("/url/current", function () {
 
 Route::get("/session/put", [\App\Http\Controllers\SessionController::class, "putSession"]);
 Route::get("/session/pull", [\App\Http\Controllers\SessionController::class, "pullSession"]);
+
+Route::get("/error/sample", function () {
+    throw new Exception("Sample exception");
+});
+
+Route::get("/error/manual", function () {
+    report(new Exception("sample exception"));
+    return "OK";
+});
+
+Route::get("/error/validation", function () {
+   throw new \App\Exceptions\ValidationException("sample validation exception");
+});
