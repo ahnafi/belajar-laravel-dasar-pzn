@@ -104,6 +104,9 @@ Route::get("/middleware/api", function () {
 Route::get("/form", [\App\Http\Controllers\FormController::class, "Form"]);
 Route::post("/form", [\App\Http\Controllers\FormController::class, "hello"]);
 
-Route::get("/url/current",function (){
+Route::get("/url/current", function () {
     return \Illuminate\Support\Facades\URL::full();
 });
+
+Route::get("/session/put", [\App\Http\Controllers\SessionController::class, "putSession"]);
+Route::get("/session/pull", [\App\Http\Controllers\SessionController::class, "pullSession"]);
